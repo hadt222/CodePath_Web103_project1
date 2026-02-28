@@ -1,0 +1,348 @@
+
+:root {
+  /* Typography */
+  font-family: system-ui, -apple-system, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Layout */
+  --container: 1200px;
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 18px;
+
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+
+  /* Brand */
+  --brand: #7c7cff;
+  --brand-2: #4fd1c5; /* accent for gradients */
+  --link: var(--brand);
+
+  /* Dark theme (default) */
+  color-scheme: dark;
+  --bg: #0b0f1a;
+  --bg-2: #0a1328;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.09);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+  --border: rgba(255, 255, 255, 0.12);
+
+  --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.25);
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 18px 60px rgba(0, 0, 0, 0.45);
+
+  --ring: 0 0 0 3px rgba(124, 124, 255, 0.35);
+
+  color: var(--text);
+  background: radial-gradient(1200px 700px at 20% 0%, rgba(124, 124, 255, 0.18), transparent 55%),
+              radial-gradient(900px 600px at 90% 10%, rgba(79, 209, 197, 0.10), transparent 50%),
+              linear-gradient(180deg, var(--bg), var(--bg-2));
+}
+
+/* Light theme */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f7f8fc;
+    --bg-2: #eef2ff;
+    --surface: rgba(255, 255, 255, 0.75);
+    --surface-2: rgba(255, 255, 255, 0.92);
+    --text: rgba(19, 27, 48, 0.92);
+    --muted: rgba(19, 27, 48, 0.68);
+    --border: rgba(20, 30, 60, 0.14);
+
+    --shadow-sm: 0 6px 16px rgba(17, 24, 39, 0.08);
+    --shadow: 0 12px 32px rgba(17, 24, 39, 0.10);
+    --shadow-lg: 0 18px 60px rgba(17, 24, 39, 0.12);
+
+    --ring: 0 0 0 3px rgba(124, 124, 255, 0.28);
+
+    background: radial-gradient(1200px 700px at 20% 0%, rgba(124, 124, 255, 0.14), transparent 55%),
+                radial-gradient(900px 600px at 90% 10%, rgba(79, 209, 197, 0.10), transparent 50%),
+                linear-gradient(180deg, var(--bg), var(--bg-2));
+  }
+}
+
+/* Optional subtle noise overlay (looks premium). Remove if not desired. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: transparent; /* background is on :root */
+}
+
+/* Better focus styles */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: 10px;
+}
+
+/* Links */
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.header-container {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid var(--border);
+}
+
+@media (prefers-color-scheme: light) {
+  .header-container {
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.65));
+  }
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-left img {
+  height: 48px;
+  width: auto;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: 0.2px;
+}
+
+.header-right button {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.65em 1.1em;
+  font-size: 0.98em;
+  font-weight: 600;
+  font-family: inherit;
+
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  color: var(--text);
+
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-right button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+  border-color: rgba(124, 124, 255, 0.5);
+}
+
+.header-right button:active {
+  transform: translateY(0px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+#main-content {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--space-5);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  #main-content { padding: var(--space-4); }
+  .header-container { padding: 0.9rem 1rem; }
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+.card {
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow-sm);
+  transform: translateZ(0);
+  transition: transform 0.18s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(124, 124, 255, 0.45);
+}
+
+.top-container {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Gradient overlay for better text contrast / nicer look */
+.top-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.45));
+}
+
+@media (prefers-color-scheme: light) {
+  .top-container::after {
+    background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(0,0,0,0.25));
+  }
+}
+
+.bottom-container {
+  padding: 1.25rem;
+}
+
+.bottom-container h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.18rem;
+  letter-spacing: 0.2px;
+}
+
+.bottom-container p {
+  margin: 0.25rem 0;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+.bottom-container a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.85rem;
+  font-weight: 650;
+  color: var(--link);
+}
+
+.bottom-container a::after {
+  content: "→";
+  transition: transform 0.15s ease;
+}
+
+.bottom-container a:hover::after {
+  transform: translateX(2px);
+}
+
+/* =========================================================
+   GIFT DETAIL PAGE
+   ========================================================= */
+.gift-info {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--space-5);
+}
+
+.gift-info .image-container {
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.gift-info .image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gift-details h2 {
+  margin-top: 0;
+  letter-spacing: 0.2px;
+}
+
+.gift-details p {
+  margin: 0.5rem 0;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* =========================================================
+   404 PAGE
+   ========================================================= */
+.page-404 {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.page-404 h1 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.page-404 p {
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+
+/* =========================================================
+   MOTION ACCESSIBILITY
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  background-color: #1da0d0;
+  font-size: 0.9rem;
+}
