@@ -12,14 +12,20 @@ The following **required** functionality is completed:
 
 <!-- Make sure to check off completed functionality below -->
 
-- [x] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
-- [x] **The web app displays a title**
-- [x] **The web app displays at least five unique list items, each with at least three displayed attributes (such as title, text, and image)**
-- [ X] **The user can click on each item in the list to see a detailed view of it, including all database fields**
-  - [X ] **Each detail view should be a unique endpoint, such as as `localhost:3001/destinations` and `localhost:3001 `**
-  - [ X] _Note: When showing this feature in the video walkthrough, please show the unique URL for each detailed view. We will not be able to give points if we cannot see the implementation_
-- [x] **The web app serves an appropriate 404 page when no matching route is defined**
-- [x] **The web app is styled using Picocss**
+<!-- Make sure to check off completed functionality below -->
+- [X] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
+- [X] **The web app is connected to a PostgreSQL database, with an appropriately structured database table for the list items**
+- [X] **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
+- [X]  **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT * FROM tablename;' to display your table contents.**
+
+
+The following **optional** features are implemented:
+
+- [ ] The user can search for items by a specific attribute
+
+The following **additional** features are implemented:
+
+- [ ] List anything else that you added to improve the site's functionality!
 
 The following **optional** features are implemented:
 
@@ -35,7 +41,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='Recording.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='week2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 

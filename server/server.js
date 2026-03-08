@@ -2,11 +2,19 @@ import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import destinationsRouter from './routes/destinations.js'
+import pool from './data/index.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const app = express()
+
+app.use(express.json())
+
+// Test database connection
+pool.connect()
+  .then(() => console.log('✅ Connected to PostgreSQL'))
+  .catch(err => console.error('❌ PostgreSQL connection error', err))
 
 app.use('/public', express.static('./public'))
 app.use('/scripts', express.static('./public/scripts'))
